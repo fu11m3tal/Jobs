@@ -1,5 +1,6 @@
 body {
-  margin: 100px 100px;
+  margin: 0px 20px;
+  background-color: rgb(0, 0, 31);
 }
 
 .entry {
@@ -17,6 +18,29 @@ body {
 }
 
 .logo {
-  height: 7%;
-  width: 7%;
+  padding-top: 10px;
+  height: 4%;
+  width: 4%;
+  background-color: transparent;
+  align-items: 'center',
 } 
+
+.row {
+  display: flex;
+  width: 100%;
+  margin-top: 25px;
+}
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 300px;
+  padding: 15px;
+  height: 100%; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

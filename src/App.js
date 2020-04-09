@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-// import './App.css';
-import SearchBar from './Components/SearchBar.js';
 import JobList from './Components/JobList.js';
 import data from './data.js';
-import Cards from './Components/Card.js'
+import Cards from './Components/Card.js';
+import PrimarySearchAppBar from './Components/Bar.js'
 // import { arrowFunctionExpression } from '@babel/types';
 
 class App extends React.Component {
@@ -24,7 +23,6 @@ class App extends React.Component {
     this.filterListings = this.filterListings.bind(this);
   }
   handleURL(e) {
-    console.log(e.target.id)
     window.open(e.target.id, "_blank")
   }
   diagnose(name, e) {
@@ -46,6 +44,7 @@ class App extends React.Component {
   getListings(e) {
     axios.get('api/listings')
       .then((response) => {
+        console.log(response.data.length)
         this.setState({listings: response.data})
       })
       .then(() => {
@@ -67,8 +66,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="Job">
-        <h1>Crack into Software Engineering!</h1>
-        <SearchBar handleSearchInput={this.handleSearchInput} search={this.state.search}/>
+        <img className="logo" src="logo.jpg" ></img>
+        <PrimarySearchAppBar handleSearchInput={this.handleSearchInput} search={this.state.search}/>
         <JobList listings={this.state.listings} handleURL={this.handleURL}/>    
       </div>
     )

@@ -19,9 +19,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    margin: 20,
-    backgroundColor: red[100],
+    marginTop: 20,
+    width: 310,
+    height: 350,
+    marginLeft: 0,
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
   },
   media: {
     height: 0,
@@ -78,7 +80,7 @@ function JoblistEntry(props) {
           {location}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing className={"card-actions"}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
