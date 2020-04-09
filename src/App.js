@@ -3,7 +3,8 @@ import axios from 'axios';
 import JobList from './Components/JobList.js';
 import data from './data.js';
 import Cards from './Components/Card.js';
-import PrimarySearchAppBar from './Components/Bar.js'
+import PrimarySearchAppBar from './Components/Bar.js';
+import domtoimage from 'dom-to-image';
 // import { arrowFunctionExpression } from '@babel/types';
 
 class App extends React.Component {
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.handleSearchButton = this.handleSearchButton.bind(this);
     this.getListings = this.getListings.bind(this);
     this.filterListings = this.filterListings.bind(this);
+    this.screenshot = this.screenshot.bind(this);
   }
   handleURL(e) {
     window.open(e.target.id, "_blank")
@@ -60,12 +62,29 @@ class App extends React.Component {
     var listings = this.state.listings;
     this.setState({filter: listings.filter(cb)})
   }
+  screenshot() {
+    console.log("Progress Snapshot Generated", document)
+    domtoimage.toJpeg(document.getElementById('app'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        var date = Date();
+        var path = '/Users/syoh/Desktop/Jobs/Development/Screenshots';
+        link.download = `Snap: ${date}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+    });
+  }
   componentDidMount() {
     this.getListings();
+    this.screenshot();
+  }
+  componentDidUpdate() {
+    // this.screenshot();
   }
   render() {
     return (
       <div className="Job">
+        <button onClick={this.screenshot} >SCREEN SHOT</button>
         <img className="logo" src="logo.jpg" ></img>
         <PrimarySearchAppBar handleSearchInput={this.handleSearchInput} search={this.state.search}/>
         <JobList listings={this.state.listings} handleURL={this.handleURL}/>    

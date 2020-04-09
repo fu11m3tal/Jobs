@@ -67,7 +67,7 @@ function JoblistEntry(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title={title}
+        title={title} 
         subheader={created_at.split(' ').slice(0,3).join(' ')}
       />
       {/* <CardMedia
