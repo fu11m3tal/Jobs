@@ -66,3 +66,20 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+GET /positions.json
+Search for jobs by term, location, full time vs part time, or any combination of the three. All parameters are optional.
+
+Parameters
+
+description — A search term, such as "ruby" or "java". This parameter is aliased to search.
+location — A city name, zip code, or other location search term.
+lat — A specific latitude. If used, you must also send long and must not send location.
+long — A specific longitude. If used, you must also send lat and must not send location.
+full_time — If you want to limit results to full time positions set this parameter to 'true'.
+Examples
+
+https://jobs.github.com/positions.json?description=python&full_time=true&location=sf
+https://jobs.github.com/positions.json?search=node
+https://jobs.github.com/positions.json?lat=37.3229978&long=-122.0321823

@@ -8,7 +8,7 @@ function Joblist(props) {
   var c = listings.filter((value, index) => (index >= 20 && index < 30));
   var d = listings.filter((value, index) => (index >= 30 && index < 40));
   var e = listings.filter((value, index) => (index >= 40 && index < 50));
-  var columns = [a, b, c, d, e];
+  var columns = [a, b, c, d];
   var methods = { handleURL: props.handleURL }
   return (
     <div className="row">

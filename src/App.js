@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import JobList from './Components/JobList.js';
-import data from './data.js';
+// import data from './data.js';
 import Cards from './Components/Card.js';
-import PrimarySearchAppBar from './Components/Bar.js';
+import PrimarySearchAppBar from './Components/Bar/AppBar.js';
 import domtoimage from 'dom-to-image';
 // import { arrowFunctionExpression } from '@babel/types';
 
@@ -14,7 +14,8 @@ class App extends React.Component {
       listings: [],
       filter: [],
       data: [],
-      search: "",
+      search: "search...",
+      location: "location...",
     }
     this.handleURL = this.handleURL.bind(this);
     this.diagnose = this.diagnose.bind(this);
@@ -76,17 +77,16 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getListings();
-    this.screenshot();
   }
   componentDidUpdate() {
-    // this.screenshot();
+
   }
   render() {
     return (
       <div className="Job">
         <button onClick={this.screenshot} >SCREEN SHOT</button>
         <img className="logo" src="logo.jpg" ></img>
-        <PrimarySearchAppBar handleSearchInput={this.handleSearchInput} search={this.state.search}/>
+        <PrimarySearchAppBar handleSearchInput={this.handleSearchInput} search={this.state.search} location={this.state.location}/>
         <JobList listings={this.state.listings} handleURL={this.handleURL}/>    
       </div>
     )
