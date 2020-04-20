@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       listings: [],
       filter: [],
+      saved: [],
       data: [],
       search: "search...",
       location: "location...",
@@ -34,6 +35,19 @@ class App extends React.Component {
     console.log("Arguments: ");
     console.log("Event Target: ", e.target);
     console.log("State:", this.state)
+  }
+
+  screenshot() {
+    console.log("Progress Snapshot Generated", document)
+    domtoimage.toJpeg(document.getElementById('app'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        var date = Date();
+        var path = '/Users/syoh/Desktop/Jobs/Development/Screenshots';
+        link.download = `Snap: ${date}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+    });
   }
   handleSearchInput(e) {
     this.diagnose("handleSearchInput", e)
@@ -63,18 +77,11 @@ class App extends React.Component {
     var listings = this.state.listings;
     this.setState({filter: listings.filter(cb)})
   }
-  screenshot() {
-    console.log("Progress Snapshot Generated", document)
-    domtoimage.toJpeg(document.getElementById('app'), { quality: 0.95 })
-    .then(function (dataUrl) {
-        var link = document.createElement('a');
-        var date = Date();
-        var path = '/Users/syoh/Desktop/Jobs/Development/Screenshots';
-        link.download = `Snap: ${date}.jpeg`;
-        link.href = dataUrl;
-        link.click();
-    });
+
+  saveListing() {
+    //Post to database
   }
+  
   componentDidMount() {
     this.getListings();
   }
